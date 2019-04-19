@@ -256,6 +256,11 @@
     <string name="lockscreen_clock_selection_sammy_bold">Sammy (bold)</string>
     <string name="lockscreen_clock_selection_text">Android Q Text Clock</string>
 
+    <!-- Lockscreen text clock align -->
+    <string name="lockscreen_clock_align0">Left</string>
+    <string name="lockscreen_clock_align1">Center</string>
+    <string name="lockscreen_clock_align2">Right</string>
+
 
     <!-- Weather -->
     <string name="weather_title">Weather</string>
