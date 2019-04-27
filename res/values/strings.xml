@@ -325,4 +325,10 @@
 
     <string name="ignore_rssnr_title">Ignore RSSNR</string>
     <string name="ignore_rssnr_summary">Ignore RSSNR in LTE signal strength calculation</string>
+
+    <!-- Lockscreen cover art filter -->
+    <string name="lockscreen_cover_filter_title">Media cover art filter</string>
+    <string name="lockscreen_cover_filter_none">None</string>
+    <string name="lockscreen_cover_filter_grayscale">Grayscale</string>
+    <string name="lockscreen_cover_filter_blur">Blur</string>
 </resources>
