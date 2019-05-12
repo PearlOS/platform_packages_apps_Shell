@@ -309,6 +309,16 @@
     <string name="volte_icon_title">VoLTE/VoLiT icon</string>
     <string name="volte_icon_summary">Display VoLTE/VoLiT icon</string>
 
+
+    <!-- QS tile styles -->
+    <string name="quick_settings_title">QS styles </string>
+    <string name="statusbar_category_title">Notification</string>
+    <string name="qs_tile_style_title">QS tile style</string>
+    <string name="qstile_default">Default</string>
+    <string name="qstile_circle_trim">Circle with trim</string>
+    <string name="qstile_dual_tone_circle">Dual-toned circle</string>
+    <string name="qstile_squircle_trim">Squircle with trim</string>
+
     <!-- 4G icon -->
     <string name="show_fourg_icon_title">4G icon</string>
     <string name="show_fourg_icon_summary">Display 4G icon instead of LTE icon</string>   

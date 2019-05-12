@@ -67,4 +67,9 @@
             android:key="quicksettings_category"
             android:title="@string/quick_settings_title"
             android:fragment="com.shell.extras.fragments.QuickSettings"/>
+
+    <Preference
+        android:key="statusbar_ticker"
+        android:title="@string/status_bar_ticker_title"
+        android:fragment="com.shell.extras.fragments.Ticker" />
 </PreferenceScreen>
