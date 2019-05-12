@@ -299,4 +299,12 @@
     <!-- Fingerprint unlock keystore -->  
     <string name="fp_unlock_keystore_title">Fingerprint unlock</string>  
     <string name="fp_unlock_keystore_summary">Unlock device with fingerprint after reboot without PIN/Password/Pattern\nNote: at your own risk!</string>
+
+    <!-- Three-fingers-swipe to screenshot -->
+    <string name="three_finger_gesture">Swipe to screenshot</string>
+    <string name="three_finger_gesture_summary">Swipe three fingers to take screenshot</string>
+
+    <!-- Show VoLTE icon on statusbar -->
+    <string name="volte_icon_title">VoLTE/VoLiT icon</string>
+    <string name="volte_icon_summary">Display VoLTE/VoLiT icon</string>
 </resources>

@@ -17,7 +17,9 @@
 package com.shell.extras.tabs;
 
 import android.content.Context;
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.app.Fragment;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
@@ -27,6 +29,8 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v14.preference.SwitchPreference;
+import android.provider.Settings;
 
 import com.android.settings.R;
 
@@ -40,6 +44,7 @@ public class Misc extends SettingsPreferenceFragment implements Preference.OnPre
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.misc);
+        ContentResolver resolver = getActivity().getContentResolver();
     }
 
     @Override
@@ -54,7 +59,8 @@ public class Misc extends SettingsPreferenceFragment implements Preference.OnPre
 
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
+        ContentResolver resolver = getActivity().getContentResolver();
+//        final String key = preference.getKey();
         return false;
     }
 

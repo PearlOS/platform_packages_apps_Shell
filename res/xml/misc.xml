@@ -16,4 +16,15 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+     <com.shell.extras.preferences.SystemSettingSwitchPreference
+        android:key="three_finger_gesture" 
+        android:title="@string/three_finger_gesture" 
+        android:summary="@string/three_finger_gesture_summary" 
+        android:defaultValue="false" /> 
+
+     <com.shell.extras.preferences.SystemSettingSwitchPreference
+        android:key="volte_icon"
+        android:title="@string/volte_icon_title"
+        android:summary="@string/volte_icon_summary"
+        android:defaultValue="true"/>
 </PreferenceScreen>
