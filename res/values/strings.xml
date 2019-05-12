@@ -312,4 +312,7 @@
     <!-- 4G icon -->
     <string name="show_fourg_icon_title">4G icon</string>
     <string name="show_fourg_icon_summary">Display 4G icon instead of LTE icon</string>   
+
+    <string name="ignore_rssnr_title">Ignore RSSNR</string>
+    <string name="ignore_rssnr_summary">Ignore RSSNR in LTE signal strength calculation</string>
 </resources>
