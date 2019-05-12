@@ -65,6 +65,7 @@
         <item>@string/battery_style_big_dotted_circle</item>
         <item>@string/status_bar_battery_style_text</item>
         <item>@string/status_bar_battery_style_hidden</item>
+	<item>@string/battery_style_q</item>
     </string-array>
 
     <string-array name="values_status_bar_battery" translatable="false">
