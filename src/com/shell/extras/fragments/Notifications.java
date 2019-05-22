@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 The Dirty Unicorns Project
+ * Copyright (C) 2018 The Potato Open Sauce Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 package com.shell.extras.fragments;
 
-import android.content.Context;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -27,11 +27,10 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
-import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceScreen;
-import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -40,20 +39,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import com.dirtytweaks.tweaks.preferences.PackageListAdapter.PackageItem;
-import com.dirtytweaks.tweaks.preferences.PackageListAdapter;
 
 import com.android.internal.logging.nano.MetricsProto;
-
 import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
+import com.shell.extras.preferences.PackageListAdapter.PackageItem;
+import com.shell.extras.preferences.PackageListAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Notifications extends SettingsPreferenceFragment
@@ -80,12 +77,12 @@ public class Notifications extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-    if (preference == mHeadsUpTimeOut) {
+        if (preference == mHeadsUpTimeOut) {
             int headsUpTimeOut = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.HEADS_UP_TIMEOUT, headsUpTimeOut);
             updateHeadsUpTimeOutSummary(headsUpTimeOut);
             return true;
-    } else if (preference == mHeadsUpSnoozeTime) {
+        } else if (preference == mHeadsUpSnoozeTime) {
             int headsUpSnooze = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.HEADS_UP_NOTIFICATION_SNOOZE, headsUpSnooze);
             updateHeadsUpSnoozeTimeSummary(headsUpSnooze);
@@ -111,7 +108,7 @@ public class Notifications extends SettingsPreferenceFragment
         mAddStoplistPref.setOnPreferenceClickListener(this);
         mAddBlacklistPref.setOnPreferenceClickListener(this);
 
-   Resources systemUiResources;
+        Resources systemUiResources;
         try {
             systemUiResources = getPackageManager().getResourcesForApplication("com.android.systemui");
         } catch (Exception e) {
@@ -140,7 +137,7 @@ public class Notifications extends SettingsPreferenceFragment
     private void updateHeadsUpTimeOutSummary(int value) {
         String summary = getResources().getString(R.string.heads_up_time_out_summary, value / 1000);
         mHeadsUpTimeOut.setSummary(summary);
-   }
+    }
 
     private void updateHeadsUpSnoozeTimeSummary(int value) {
         if (value == 0) {
@@ -164,23 +161,22 @@ public class Notifications extends SettingsPreferenceFragment
         super.onPause();
     }
 
-    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider() {
-                @Override
-                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
-                        boolean enabled) {
-                    final ArrayList<SearchIndexableResource> result = new ArrayList<>();
-                    final SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.notifications;
-                    result.add(sir);
-                    return result;
-                }
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER = new BaseSearchIndexProvider() {
 
-                @Override
-                public List<String> getNonIndexableKeys(Context context) {
-                    final List<String> keys = super.getNonIndexableKeys(context);
-                    return keys;
-                }
+        @Override
+        public List<SearchIndexableResource> getXmlResourcesToIndex(Context context, boolean enabled) {
+            List<SearchIndexableResource> indexables = new ArrayList<>();
+            SearchIndexableResource indexable = new SearchIndexableResource(context);
+            indexable.xmlResId = R.xml.notifications;
+            indexables.add(indexable);
+            return indexables;
+        }
+
+        @Override
+        public List<String> getNonIndexableKeys(Context context) {
+            List<String> keys = super.getNonIndexableKeys(context);
+            return keys;
+        }
     };
 
     /**
@@ -193,13 +189,13 @@ public class Notifications extends SettingsPreferenceFragment
         final ListView list = new ListView(getActivity());
         list.setAdapter(mPackageAdapter);
 
-                builder.setTitle(R.string.profile_choose_app);
-                builder.setView(list);
-                dialog = builder.create();
+        builder.setTitle(R.string.profile_choose_app);
+        builder.setView(list);
+        dialog = builder.create();
 
         switch (id) {
-            case DIALOG_STOPLIST_APPS:
-                list.setOnItemClickListener(new OnItemClickListener() {
+        case DIALOG_STOPLIST_APPS:
+            list.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // Add empty application definition, the user will be able to edit it later
@@ -227,8 +223,10 @@ public class Notifications extends SettingsPreferenceFragment
      */
     private static class Package {
         public String name;
+
         /**
          * Stores all the application values in one call
+         *
          * @param name
          */
         public Package(String name) {
@@ -275,7 +273,7 @@ public class Notifications extends SettingsPreferenceFragment
                 }
             }
 
-        for (Package pkg : mBlacklistPackages.values()) {
+            for (Package pkg : mBlacklistPackages.values()) {
                 try {
                     Preference pref = createPreferenceFromInfo(pkg);
                     mBlacklistPrefList.addPreference(pref);
@@ -297,28 +295,28 @@ public class Notifications extends SettingsPreferenceFragment
     public boolean onPreferenceClick(Preference preference) {
         if (preference == mAddStoplistPref) {
             showDialog(DIALOG_STOPLIST_APPS);
-            } else if (preference == mAddBlacklistPref) {
+        } else if (preference == mAddBlacklistPref) {
             showDialog(DIALOG_BLACKLIST_APPS);
         } else {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()).setTitle(R.string.dialog_delete_title)
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()).setTitle(R.string.dialog_delete_title)
                     .setMessage(R.string.dialog_delete_message).setIconAttribute(android.R.attr.alertDialogIcon)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (preference == mBlacklistPrefList.findPreference(preference.getKey())) {
-                                 removeApplicationPref(preference.getKey(), mBlacklistPackages);
+                                removeApplicationPref(preference.getKey(), mBlacklistPackages);
                             } else if (preference == mStoplistPrefList.findPreference(preference.getKey())) {
                                 removeApplicationPref(preference.getKey(), mStoplistPackages);
                             }
                         }
                     }).setNegativeButton(android.R.string.cancel, null);
 
-        builder.show();
+            builder.show();
         }
         return true;
     }
 
-     private void addCustomApplicationPref(String packageName, Map<String,Package> map) {
+    private void addCustomApplicationPref(String packageName, Map<String, Package> map) {
         Package pkg = map.get(packageName);
         if (pkg == null) {
             pkg = new Package(packageName);
@@ -348,7 +346,7 @@ public class Notifications extends SettingsPreferenceFragment
     }
 
     private boolean parsePackageList() {
-    boolean parsed = false;
+        boolean parsed = false;
 
         final String stoplistString = Settings.System.getString(getContentResolver(),
                 Settings.System.HEADS_UP_STOPLIST_VALUES);
@@ -387,7 +385,7 @@ public class Notifications extends SettingsPreferenceFragment
         }
     }
 
-     private void savePackageList(boolean preferencesUpdated, Map<String, Package> map) {
+    private void savePackageList(boolean preferencesUpdated, Map<String, Package> map) {
         String setting = map == mStoplistPackages ? Settings.System.HEADS_UP_STOPLIST_VALUES
                 : Settings.System.HEADS_UP_BLACKLIST_VALUES;
 
@@ -402,9 +400,8 @@ public class Notifications extends SettingsPreferenceFragment
             } else {
                 mBlacklistPackageList = value;
             }
-           }
-        Settings.System.putString(getContentResolver(),
-                setting, value);
+        }
+        Settings.System.putString(getContentResolver(), setting, value);
     }
 
     @Override

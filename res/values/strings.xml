@@ -34,7 +34,12 @@
     <string name="lockscreen_title">Lock Screen</string>
     <string name="system_title">System</string>
     <string name="statusbar_title">Statusbar</string>
-    <string name="notification_title">Notification</string>
+
+    <!-- Random Stuff -->
+    <string name="notification_title">Notifications</string>
+    <string name="notification_stuff_title">Notification Stuff</string>
+    <string name="notification_stuff_summary">Tweaks specific to system notifications</string>
+
 
     <!-- System -->
     <string name="device_extras_title">Device extras</string>
@@ -338,10 +343,6 @@
     <string name="lockscreen_cover_filter_tint">Accent tinted</string>
     <string name="lockscreen_cover_filter_blur">Blur</string>
     <string name="lockscreen_cover_filter_grayblur">Grayscale and blurred</string>
-
-    <!-- Media art -->
-    <string name="media_art_title">Media cover art</string>
-    <string name="media_art_summary">Enable media cover art on the lockscreen</string>
 
     <!-- Heads up -->
     <string name="heads_up_notifications">Heads up</string>

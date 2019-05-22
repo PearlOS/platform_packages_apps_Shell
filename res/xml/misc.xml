@@ -16,6 +16,12 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+     <Preference
+        android:key="notification_stuff"
+        android:title="@string/notification_stuff_title"
+        android:summary="@string/notification_stuff_summary"
+        android:fragment="com.shell.extras.fragments.Notifications" />
+
      <com.shell.extras.preferences.SystemSettingSwitchPreference
         android:key="three_finger_gesture" 
         android:title="@string/three_finger_gesture" 
