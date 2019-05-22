@@ -16,9 +16,11 @@
 
 package com.shell.extras.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.provider.SearchIndexableResource;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.support.v4.app.Fragment;
@@ -31,13 +33,18 @@ import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 
 import com.shell.extras.preferences.SystemSettingSwitchPreference;
 import com.shell.extras.preferences.CustomSeekBarPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 
-public class Ticker extends SettingsPreferenceFragment implements OnPreferenceChangeListener{
+import java.util.List;
+import java.util.ArrayList;
+
+public class Ticker extends SettingsPreferenceFragment implements OnPreferenceChangeListener, Indexable {
 
 	private ListPreference mTickerAnimationMode;
 	private CustomSeekBarPreference mTickerAnimationDuration;
@@ -98,4 +105,22 @@ public class Ticker extends SettingsPreferenceFragment implements OnPreferenceCh
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.SHELLEXTRAS;
     }
+
+    /**
+     * For search
+     */
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.ticker;
+                    result.add(sir);
+
+                    return result;
+                }
+            };
 }

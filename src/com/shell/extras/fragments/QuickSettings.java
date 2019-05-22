@@ -1,5 +1,6 @@
 package com.shell.extras.fragments;
 
+import android.content.Context;
 import com.android.internal.logging.nano.MetricsProto;
 import android.os.Bundle;
 import android.content.Intent;
@@ -15,9 +16,16 @@ import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
+import android.provider.SearchIndexableResource;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
+
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
+
 import android.text.TextUtils;
 import android.view.View;
 
@@ -27,7 +35,7 @@ import java.util.ArrayList;
 import com.shell.extras.preferences.CustomSeekBarPreference;
 
 public class QuickSettings extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener {
+        OnPreferenceChangeListener, Indexable {
 
     private static final String QS_TILE_STYLE = "qs_tile_style";
     private ListPreference mQsTileStyle;
@@ -69,4 +77,22 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.SHELLEXTRAS;
     }
+
+    /**
+     * For search
+     */
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.quick_settings;
+                    result.add(sir);
+
+                    return result;
+                }
+            };
 }

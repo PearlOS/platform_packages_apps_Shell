@@ -20,7 +20,9 @@
 
 package com.shell.extras.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.provider.SearchIndexableResource;
 import android.support.v4.app.Fragment;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
@@ -29,10 +31,15 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 
 import com.android.internal.logging.nano.MetricsProto;
 
-public class NavbarSettings extends SettingsPreferenceFragment {
+import java.util.List;
+import java.util.ArrayList;
+
+public class NavbarSettings extends SettingsPreferenceFragment implements Indexable {
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -44,4 +51,22 @@ public class NavbarSettings extends SettingsPreferenceFragment {
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.SHELLEXTRAS;
     }
+
+    /**
+     * For search
+     */
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.navbar_settings;
+                    result.add(sir);
+
+                    return result;
+                }
+            };
 }

@@ -17,8 +17,8 @@
 package com.shell.extras.fragments;
 
 import android.app.ActivityManagerNative;
-import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -38,7 +38,9 @@ import android.view.IWindowManager;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import java.util.ArrayList;
 import java.util.Locale;
+import java.util.List;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -50,8 +52,11 @@ import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.internal.util.hwkeys.ActionUtils;
 import com.shell.extras.preferences.ActionFragment;
 import com.shell.extras.preferences.CustomSeekBarPreference;
+import android.provider.SearchIndexableResource;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 
-public class Buttons extends ActionFragment implements OnPreferenceChangeListener {
+public class Buttons extends ActionFragment implements OnPreferenceChangeListener, Indexable {
 
     // Keys
     private static final String KEY_BUTTON_BRIGHTNESS = "button_brightness";
@@ -225,4 +230,22 @@ public class Buttons extends ActionFragment implements OnPreferenceChangeListene
         }
         return false;
     }
+
+    /**
+     * For search
+     */
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.hw_buttons;
+                    result.add(sir);
+
+                    return result;
+                }
+            };
 }
