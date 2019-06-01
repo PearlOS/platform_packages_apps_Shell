@@ -48,7 +48,8 @@
     <string name="miscellaneous_summary">Tweaks that do not fit in other categories</string>
     <string name="powermenu_title">Power menu</string>
     <string name="powermenu_summary">Configure power menu options such as flashlight, airplane mode or screenshot</string>
-    <!-- Lockscreen -->
+
+   <!-- Lockscreen -->
     <string name="face_auto_unlock_title">Face auto unlock</string>
     <string name="face_auto_unlock_summary">Dismiss lockscreen after face unlocking</string>
     
@@ -394,4 +395,8 @@
     <!-- Volume dialog timeout -->
     <string name="volume_dialog_timeout_title">Volume dialog timeout</string>
     <string name="dialog_music">Music</string>
+
+    <!--Volume keys -->
+    <string name="volume_rocker_music_controls_title">Music control</string>
+    <string name="volume_rocker_music_controls_summary">Long press volume buttons to switch tracks while screen off</string>
 </resources>

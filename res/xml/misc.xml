@@ -45,4 +45,11 @@
             android:title="@string/ignore_rssnr_title"
             android:summary="@string/ignore_rssnr_summary"
             android:defaultValue="false" />
+
+     <com.shell.extras.preferences.SystemSettingSwitchPreference
+        android:key="volume_button_music_control"
+        android:summary="@string/volume_rocker_music_controls_summary"
+        android:title="@string/volume_rocker_music_controls_title"
+        android:defaultValue="false"
+        android:dependency="volume_rocker_wake" />
 </PreferenceScreen>
