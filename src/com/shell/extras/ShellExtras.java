@@ -62,6 +62,10 @@ public class ShellExtras extends SettingsPreferenceFragment {
     public static Intent INTENT_ABOUT = new Intent(Intent.ACTION_MAIN)
             .setClassName(ABOUT_PACKAGE_NAME, ABOUT_PACKAGE_NAME + ".MainActivity");
 
+    public static final String NAME = "com.spotify.music";
+    public static Intent MUZIC = new Intent (Intent.ACTION_MAIN)
+            .setClassName(NAME, NAME + ".MainActivity");
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -107,7 +111,7 @@ public class ShellExtras extends SettingsPreferenceFragment {
 
             @Override
             public void onPageSelected(int position) {
-                if(menuitem != null) {
+        if(menuitem != null) {
                     menuitem.setChecked(false);
                 } else {
                     navigation.getMenu().getItem(0).setChecked(false);
@@ -177,6 +181,7 @@ public class ShellExtras extends SettingsPreferenceFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.add(0, 0, 0, R.string.dialog_team_title);
+        menu.add(0, 1, 0, R.string.dialog_music);
     }
 
     @Override
@@ -185,11 +190,21 @@ public class ShellExtras extends SettingsPreferenceFragment {
             case 0:
                 if (INTENT_ABOUT != null) {
                     try {
-                        
                         startActivity(INTENT_ABOUT);
-                        
                     } catch (ActivityNotFoundException activityNotFound) {
                         mTapToast = Toast.makeText(getContext(),"Aww it seems like you dont have the app installed",Toast.LENGTH_LONG);
+                        mTapToast.show();
+
+                    }
+                }
+                return true;
+
+  	   case 1:
+                if (MUZIC != null) {
+                    try {
+	                startActivity(MUZIC);
+                    } catch (ActivityNotFoundException activityNotFound) {
+                        mTapToast = Toast.makeText(getContext(),"Nope, you aren't eligible only for devs",Toast.LENGTH_LONG);
                         mTapToast.show();
 
                     }

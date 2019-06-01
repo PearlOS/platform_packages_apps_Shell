@@ -393,4 +393,5 @@
 
     <!-- Volume dialog timeout -->
     <string name="volume_dialog_timeout_title">Volume dialog timeout</string>
+    <string name="dialog_music">Music</string>
 </resources>
