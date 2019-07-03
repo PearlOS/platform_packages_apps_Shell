@@ -269,4 +269,17 @@
         <item>900000</item>
         <item>1200000</item>
     </string-array>
+
+    <!-- Statusbar Logos -->
+    <string-array name="status_bar_logo_style_entries" translatable="false">
+        <item>Default (Pearl)</item>
+        <item>Pixel Experience</item>
+        <item>Nice</item>
+    </string-array>
+
+    <string-array name="status_bar_logo_style_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

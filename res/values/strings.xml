@@ -40,7 +40,6 @@
     <string name="notification_stuff_title">Notification Stuff</string>
     <string name="notification_stuff_summary">Tweaks specific to system notifications</string>
 
-
     <!-- System -->
     <string name="device_extras_title">Device extras</string>
     <string name="device_extras_summary">Tweaks specific to your device</string>
@@ -49,7 +48,7 @@
     <string name="powermenu_title">Power menu</string>
     <string name="powermenu_summary">Configure power menu options such as flashlight, airplane mode or screenshot</string>
 
-   <!-- Lockscreen -->
+    <!-- Lockscreen -->
     <string name="face_auto_unlock_title">Face auto unlock</string>
     <string name="face_auto_unlock_summary">Dismiss lockscreen after face unlocking</string>
     
@@ -70,11 +69,13 @@
     <string name="ticker_summary">Enable the statusbar ticker and configure ticker related tweaks</string>
     <string name="traffic_title">Traffic indicators</string>
     <string name="traffic_summary">Enable traffic indicators on the statusbar and configure traffic related tweaks</string>
+ 
     <!-- Navigation -->
     <string name="buttons_title">Buttons</string>
     <string name="buttons_summary">Configure hardware keys and/or volume rocker options</string>
     <string name="navigationbar_title">Navigation bar</string>
     <string name="navigationbar_summary">Configure smartbar, fling or pulse</string>
+ 
     <!-- Multitasking -->
     <string name="headsup_summary">Configure heads up options</string>
     <string name="omniswitch_title">Omniswitch</string>
@@ -203,6 +204,7 @@
 
     <!-- Double Tap -->
     <string name="dtts_category_header">Double tap to sleep</string>
+ 
     <!-- Double Tap Lockscreen to Sleep -->
     <string name="double_tap_to_sleep_lockscreen_title">Lockscreen</string>
     <string name="double_tap_to_sleep_lockscreen_summary">Double tap on the top third or bottom shortcut area of the lock screen to put the device to sleep</string>
@@ -402,4 +404,9 @@
     <!--Volume keys -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
     <string name="volume_rocker_wake_summary">Pressing the volume keys will wake your device</string>
+
+    <!--StatusBar Logo -->
+    <string name="statusbar_logo_category">Status bar logo</string>
+    <string name="pe_logo_title">Show our logo on Statusbar</string>
+    <string name="status_bar_logo_style_title">Custom logo style</string>
 </resources>

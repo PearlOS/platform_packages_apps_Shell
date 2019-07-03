@@ -18,6 +18,7 @@ package com.shell.extras.fragments;
 
 import android.content.Context;
 import android.content.ContentResolver;
+import android.os.UserHandle;
 import android.os.Bundle;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -46,6 +47,7 @@ public class StatusBarBattery extends SettingsPreferenceFragment implements
 
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
+    private ListPreference mLogoStyle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,14 @@ public class StatusBarBattery extends SettingsPreferenceFragment implements
          mStatusBarBattery.setSummary(mStatusBarBattery.getEntry());
          enableStatusBarBatteryDependents(batteryStyle);
          mStatusBarBattery.setOnPreferenceChangeListener(this);
+
+         mLogoStyle = (ListPreference) findPreference("status_bar_logo_style");
+         mLogoStyle.setOnPreferenceChangeListener(this);
+         int logoStyle = Settings.System.getIntForUser(getContentResolver(),
+                 Settings.System.STATUS_BAR_LOGO_STYLE,
+                 0, UserHandle.USER_CURRENT);
+         mLogoStyle.setValue(String.valueOf(logoStyle));
+         mLogoStyle.setSummary(mLogoStyle.getEntry());
 }
 
     @Override
@@ -97,6 +107,14 @@ public class StatusBarBattery extends SettingsPreferenceFragment implements
                     Settings.Secure.STATUS_BAR_BATTERY_STYLE, batteryStyle);
             mStatusBarBattery.setSummary(mStatusBarBattery.getEntries()[index]);
             enableStatusBarBatteryDependents(batteryStyle);
+            return true;
+        } else if (preference.equals(mLogoStyle)) {
+            int logoStyle = Integer.parseInt(((String) newValue).toString());
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.STATUS_BAR_LOGO_STYLE, logoStyle, UserHandle.USER_CURRENT);
+            int index = mLogoStyle.findIndexOfValue((String) newValue);
+            mLogoStyle.setSummary(
+                    mLogoStyle.getEntries()[index]);
             return true;
         }
         return false;
