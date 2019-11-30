@@ -36,69 +36,18 @@ import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
 
 import com.android.internal.logging.nano.MetricsProto;
-import com.shell.settings.preferences.CustomSeekBarPreference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuickSettings extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener, Indexable {
-
-    private static final String PREF_COLUMNS_PORTRAIT = "qs_columns_portrait";
-    private static final String PREF_COLUMNS_LANDSCAPE = "qs_columns_landscape";
-    private static final String PREF_COLUMNS_QUICKBAR = "qs_columns_quickbar";
-
-    private CustomSeekBarPreference mQsColumnsPortrait;
-    private CustomSeekBarPreference mQsColumnsLandscape;
-    private CustomSeekBarPreference mQsColumnsQuickbar;
+        Indexable {
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.shell_settings_quicksettings);
         PreferenceScreen prefSet = getPreferenceScreen();
-
-        ContentResolver resolver = getActivity().getContentResolver();
-
-        mQsColumnsPortrait = (CustomSeekBarPreference) findPreference(PREF_COLUMNS_PORTRAIT);
-        int columnsPortrait = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_LAYOUT_COLUMNS, 4, UserHandle.USER_CURRENT);
-        mQsColumnsPortrait.setValue(columnsPortrait);
-        mQsColumnsPortrait.setOnPreferenceChangeListener(this);
-
-        mQsColumnsLandscape = (CustomSeekBarPreference) findPreference(PREF_COLUMNS_LANDSCAPE);
-        int columnsLandscape = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE, 4, UserHandle.USER_CURRENT);
-        mQsColumnsLandscape.setValue(columnsLandscape);
-        mQsColumnsLandscape.setOnPreferenceChangeListener(this);
-
-        mQsColumnsQuickbar = (CustomSeekBarPreference) findPreference(PREF_COLUMNS_QUICKBAR);
-        int columnsQuickbar = Settings.System.getInt(resolver,
-                Settings.System.QS_QUICKBAR_COLUMNS, 6);
-        mQsColumnsQuickbar.setValue(columnsQuickbar);
-        mQsColumnsQuickbar.setOnPreferenceChangeListener(this);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mQsColumnsQuickbar) {
-            int value = (Integer) newValue;
-            Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.QS_QUICKBAR_COLUMNS, value, UserHandle.USER_CURRENT);
-            return true;
-        } else if (preference == mQsColumnsPortrait) {
-            int value = (Integer) newValue;
-            Settings.System.putIntForUser(resolver,
-                    Settings.System.QS_LAYOUT_COLUMNS, value, UserHandle.USER_CURRENT);
-            return true;
-        } else if (preference == mQsColumnsLandscape) {
-            int value = (Integer) newValue;
-            Settings.System.putIntForUser(resolver,
-                    Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE, value, UserHandle.USER_CURRENT);
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -106,23 +55,22 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         return MetricsProto.MetricsEvent.SHELL;
     }
 
-    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+    public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider() {
-
                 @Override
                 public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
                         boolean enabled) {
-                    final ArrayList<SearchIndexableResource> result = new ArrayList<>();
-                    final SearchIndexableResource sir = new SearchIndexableResource(context);
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+                     SearchIndexableResource sir = new SearchIndexableResource(context);
                     sir.xmlResId = R.xml.shell_settings_quicksettings;
                     result.add(sir);
                     return result;
                 }
-
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
-                    final List<String> keys = super.getNonIndexableKeys(context);
-                    return keys;
+                    ArrayList<String> result = new ArrayList<String>();
+                    return result;
                 }
     };
 }
