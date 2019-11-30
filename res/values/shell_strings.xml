@@ -52,8 +52,6 @@
     <string name="color_down_arrow" translatable="false">"↓"</string>
     <string name="longpress_info">Longpress box to save color</string>
 
-    <!-- Statusbar Tuner -->
-    <string name="statusbar_items_title">Statusbar items</string>
     <!-- Navbar tuner -->
     <string name="navbar_tuner_title">Navbar buttons</string>
     <!-- Lockscreen icons -->
@@ -114,4 +112,9 @@
     <string name="qs_columns_portrait_title">Columns (Portrait)</string>
     <string name="qs_columns_landscape_title">Columns (Landscape)</string>
     <string name="sysui_qqs_count_title">Columns (Quickbar)</string>
+
+    <!-- Status bar - icons -->
+    <string name="status_bar_icons_title">Status bar icons</string>
+    <string name="status_bar_system_icons_title">System icons</string>
+    <string name="status_bar_system_icons_summary">Control which status bar icons are shown</string>
 </resources>
