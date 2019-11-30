@@ -27,6 +27,12 @@
         android:summary="@string/power_menu_animation_summary"
         android:persistent="false" />
 
+    <com.shell.settings.preferences.SystemSettingSwitchPreference
+            android:key="lockscreen_power_menu_disabled"
+            android:title="@string/lockscreen_power_menu_disabled_title"
+            android:summary="@string/lockscreen_power_menu_disabled_summary"
+            android:defaultValue="false" />
+
     <com.shell.settings.preferences.SecureSettingSwitchPreference
         android:key="reboot_in_power_menu"
         android:title="@string/powermenu_reboot_title"
