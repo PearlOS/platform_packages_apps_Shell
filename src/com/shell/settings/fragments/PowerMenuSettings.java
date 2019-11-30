@@ -17,18 +17,62 @@ package com.shell.settings.fragments;
 
 import com.android.internal.logging.nano.MetricsProto;
 
+import android.content.Context;
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreference;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.Preference.OnPreferenceChangeListener;
 import com.android.settings.R;
+import com.android.settings.Utils;
 
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.internal.widget.LockPatternUtils;
 
-public class PowerMenuSettings extends SettingsPreferenceFragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PowerMenuSettings extends SettingsPreferenceFragment
+        implements Preference.OnPreferenceChangeListener {
+
+    private static final String KEY_LOCKDOWN_IN_POWER_MENU = "lockdown_in_power_menu";
+    private static final int MY_USER_ID = UserHandle.myUserId();
+
+    private SwitchPreference mPowerMenuLockDown;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.shell_settings_power);
+        final PreferenceScreen prefSet = getPreferenceScreen();
+        final LockPatternUtils lockPatternUtils = new LockPatternUtils(getActivity());
+
+        mPowerMenuLockDown = (SwitchPreference) findPreference(KEY_LOCKDOWN_IN_POWER_MENU);
+        if (lockPatternUtils.isSecure(MY_USER_ID)) {
+            mPowerMenuLockDown.setChecked((Settings.Secure.getInt(getContentResolver(),
+                    Settings.Secure.LOCKDOWN_IN_POWER_MENU, 0) == 1));
+            mPowerMenuLockDown.setOnPreferenceChangeListener(this);
+        } else {
+            prefSet.removePreference(mPowerMenuLockDown);
+        }
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mPowerMenuLockDown) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(getActivity().getContentResolver(),
+                    Settings.Secure.LOCKDOWN_IN_POWER_MENU, value ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 
     @Override
