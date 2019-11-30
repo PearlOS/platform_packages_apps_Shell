@@ -63,7 +63,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements
                     ArrayList<SearchIndexableResource> result =
                             new ArrayList<SearchIndexableResource>();
                      SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.derpquest_settings_quicksettings;
+                    sir.xmlResId = R.xml.shell_settings_quicksettings;
                     result.add(sir);
                     return result;
                 }

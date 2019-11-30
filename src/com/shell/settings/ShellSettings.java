@@ -38,7 +38,7 @@ public class ShellSettings extends SettingsPreferenceFragment {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.OWLSNEST;
+        return MetricsProto.MetricsEvent.SHELL;
     }
 
     public static void lockCurrentOrientation(Activity activity) {
