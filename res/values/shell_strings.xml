@@ -200,4 +200,8 @@
     <!-- Volume settings -->
     <string name="hardware_keys_vol_key_title">Volume button</string>
 
+    <!-- AOSP Gestures -->
+    <string name="aosp_gesture_preference">AOSP Gestures</string>
+    <string name="aosp_gesture_summary">Gestures Settings of AOSP</string>
+
 </resources>
