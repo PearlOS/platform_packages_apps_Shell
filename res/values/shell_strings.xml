@@ -221,4 +221,8 @@
 
     <string name="notification_light_settings">Notifications light</string>
 
+    <!-- Buttons - Enable navbar -->
+    <string name="disable_navkeys_title">Enable on-screen nav bar</string>
+    <string name="disable_navkeys_summary">Enable on-screen navigation bar</string>
+
 </resources>
