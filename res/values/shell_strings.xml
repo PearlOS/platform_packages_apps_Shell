@@ -401,5 +401,9 @@
     <string name="status_bar_toggle_brightness">Brightness control</string> 
     <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across the status bar</string>
 
+    <!-- Bluetooth status -->
+    <string name="bluetooth_battery_title">Bluetooth battery status</string>
+    <string name="bluetooth_battery_summary">Show battery level for the currently connected BT headset, if available.</string>
+
 </resources>
  
