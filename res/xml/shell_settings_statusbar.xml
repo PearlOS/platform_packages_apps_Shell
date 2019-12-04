@@ -46,6 +46,12 @@
         android:summary="@string/data_disabled_icon_summary"
         android:defaultValue="true"/>
 
+    <com.shell.settings.preferences.SystemSettingSwitchPreference 
+        android:key="status_bar_brightness_control" 
+        android:title="@string/status_bar_toggle_brightness" 
+        android:summary="@string/status_bar_toggle_brightness_summary"
+        android:defaultValue="false" />
+
     <PreferenceCategory
         android:key="battery_style_category"
         android:title="@string/battery_style_category_title" >
