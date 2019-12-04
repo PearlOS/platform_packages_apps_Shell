@@ -18,6 +18,15 @@
     android:title="@string/button_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <com.shell.settings.preferences.SystemSettingSeekBarPreference
+        android:key="volume_dialog_timeout"
+        android:title="@string/volume_dialog_timeout_title"
+        android:max="10000"
+        settings:min="500"
+        android:defaultValue="3000"
+        settings:interval="100"
+        settings:units="ms" />
+
     <PreferenceCategory
         android:key="power_key"
         android:title="@string/hardware_keys_power_key_title" >
