@@ -15,20 +15,57 @@
  */
 package com.shell.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContentResolver;
+import android.app.WallpaperManager;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
-import com.android.settings.R;
+import androidx.preference.SwitchPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
+import android.provider.Settings;
 
+import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class LockScreenSettings extends SettingsPreferenceFragment {
+public class LockScreenSettings extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
+
+    private static final String LOCKSCREEN_VISUALIZER_ENABLED = "lockscreen_visualizer_enabled";
+
+    private SecureSettingMasterSwitchPreference mVisualizerEnabled;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.shell_settings_lockscreen);
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+        Resources resources = getResources();
+
+        mVisualizerEnabled = (SecureSettingMasterSwitchPreference) findPreference(LOCKSCREEN_VISUALIZER_ENABLED);
+        mVisualizerEnabled.setOnPreferenceChangeListener(this);
+        int visualizerEnabled = Settings.Secure.getInt(resolver,
+                LOCKSCREEN_VISUALIZER_ENABLED, 0);
+        mVisualizerEnabled.setChecked(visualizerEnabled != 0);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mVisualizerEnabled) {
+            boolean value = (Boolean) newValue;
+            Settings.Secure.putInt(getContentResolver(),
+                    LOCKSCREEN_VISUALIZER_ENABLED, value ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 
     @Override
