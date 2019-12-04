@@ -39,4 +39,10 @@
             android:summary="@string/heads_up_notifications_summary"
             android:defaultValue="true" />
 
+    <com.shell.settings.preferences.SystemSettingSwitchPreference
+            android:key="less_boring_heads_up"
+            android:title="@string/less_boring_heads_up_title"
+            android:summary="@string/less_boring_heads_up_summary"
+            android:defaultValue="false" />
+
 </PreferenceScreen>
