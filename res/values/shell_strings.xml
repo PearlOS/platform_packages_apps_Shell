@@ -52,8 +52,8 @@
     <string name="color_down_arrow" translatable="false">"↓"</string>
     <string name="longpress_info">Longpress box to save color</string>
 
-    <!-- Navbar tuner -->
-    <string name="navbar_tuner_title">Navbar buttons</string>
+    <!-- Navbar options -->
+    <string name="navbar_invert_layout_title">Invert layout</string>
     <!-- Lockscreen icons -->
     <string name="lockscreen_tuner_title">Lockscreen shortcuts</string>
 
