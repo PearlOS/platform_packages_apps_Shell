@@ -69,6 +69,12 @@
 	android:summary="@string/audio_panel_view_summary"
 	android:fragment="com.shell.settings.fragments.VolumePanel" />
 
+        <Preference
+        android:key="vol_steps"
+        android:title="@string/volume_steps_title"
+        android:summary="@string/volume_steps_summary"
+        android:fragment="com.shell.settings.fragments.VolumeSteps" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
