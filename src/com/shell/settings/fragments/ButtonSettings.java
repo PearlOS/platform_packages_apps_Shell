@@ -75,6 +75,11 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     private boolean mIsNavSwitchingMode = false;
     private Handler mHandler;
 
+    private static final String KEY_TORCH_LONG_PRESS_POWER_TIMEOUT =
+            "torch_long_press_power_timeout";
+
+    private ListPreference mTorchLongPressPowerTimeout;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -203,6 +208,16 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
 
         // load preferences first
         setActionPreferencesEnabled(keysDisabled == 0);
+
+        // Torch Power button
+        mTorchLongPressPowerTimeout =
+                    (ListPreference) findPreference(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT);
+
+        mTorchLongPressPowerTimeout.setOnPreferenceChangeListener(this);
+        int TorchTimeout = Settings.System.getIntForUser(getContentResolver(),
+                        Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0, UserHandle.USER_CURRENT);
+        mTorchLongPressPowerTimeout.setValue(Integer.toString(TorchTimeout));
+        mTorchLongPressPowerTimeout.setSummary(mTorchLongPressPowerTimeout.getEntry());
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -232,6 +247,16 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
             Settings.Secure.putIntForUser(getContentResolver(), Settings.Secure.HARDWARE_KEYS_DISABLE,
                     value ? 1 : 0, UserHandle.USER_CURRENT);
             setActionPreferencesEnabled(!value);
+            return true;
+        } else if (preference == mTorchLongPressPowerTimeout) {
+            String TorchTimeout = (String) newValue;
+            int TorchTimeoutValue = Integer.parseInt(TorchTimeout);
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, TorchTimeoutValue, UserHandle.USER_CURRENT);
+            int TorchTimeoutIndex = mTorchLongPressPowerTimeout
+                    .findIndexOfValue(TorchTimeout);
+            mTorchLongPressPowerTimeout
+                    .setSummary(mTorchLongPressPowerTimeout.getEntries()[TorchTimeoutIndex]);
             return true;
         } else if (preference == mDisableNavigationKeys) {
             if (mIsNavSwitchingMode) {
