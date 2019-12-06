@@ -49,8 +49,8 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
 import com.android.settings.Utils;
 
-import com.derpquest.settings.preferences.CustomSeekBarPreference;
-import com.derpquest.settings.preferences.SystemSettingSwitchPreference;
+import com.shell.settings.preferences.CustomSeekBarPreference;
+import com.shell.settings.preferences.SystemSettingSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.Collections;

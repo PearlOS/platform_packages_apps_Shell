@@ -467,6 +467,8 @@
     <string name="volume_steps_reset">Reset</string>
 
     <!-- Custom carrier label and position -->
+    <string name="carrier_label_title">Carrier label</string>
+    <string name="carrier_label_summary">Customize the carrier label on the lockscreen or statusbar</string>
     <string name="custom_carrier_label_title">Custom carrier label</string>
     <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
     <string name="custom_carrier_label_notset">Custom label currently not set</string>

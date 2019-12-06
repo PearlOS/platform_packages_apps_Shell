@@ -44,9 +44,9 @@ import android.widget.EditText;
 
 import com.android.internal.logging.nano.MetricsProto;
 
-import com.dirtyunicorns.support.preferences.SystemSettingSwitchPreference;
-import com.dirtyunicorns.support.preferences.CustomSeekBarPreference;
-import com.dirtyunicorns.support.colorpicker.ColorPickerPreference;
+import com.shell.settings.preferences.SystemSettingSwitchPreference;
+import com.shell.settings.preferences.CustomSeekBarPreference;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;

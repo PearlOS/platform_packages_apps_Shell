@@ -38,7 +38,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
-import com.android.internal.util.aosip.aosipUtils;
+import com.android.internal.util.pearl.Utils;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -46,6 +46,9 @@ import com.android.settings.search.Indexable;
 
 import com.android.settings.R;
 import com.shell.settings.preferences.CustomSeekBarPreference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoundedCornersSettings extends SettingsPreferenceFragment implements
          OnPreferenceChangeListener {
